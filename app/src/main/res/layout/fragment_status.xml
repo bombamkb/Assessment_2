@@ -1,0 +1,29 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.khamban.assessment.Status">
+
+    <!-- TODO: Update blank fragment layout -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ImageView
+            android:id="@+id/nav_head"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:src="@drawable/head"
+            android:background="@color/colorhead"
+
+            />
+        <TextView
+            android:layout_below="@+id/nav_head"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="สถานะการทำแบบประเมิน"
+            android:fontFamily="@font/thsarabun"
+            android:textSize="40dp"
+            android:gravity="center"/>
+    </RelativeLayout>
+
+</FrameLayout>

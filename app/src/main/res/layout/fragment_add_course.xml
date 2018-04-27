@@ -1,0 +1,146 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/add_course"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    tools:context="com.khamban.assessment.Add_course">
+
+
+    <!-- TODO: Update blank fragment layout -->
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/nav_head"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="@color/colorhead"
+                android:src="@drawable/head" />
+
+            <TextView
+                android:id="@+id/add_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/nav_head"
+                android:fontFamily="@font/thsarabun"
+                android:gravity="center"
+                android:text="เพิ่มรายวิชา"
+                android:textSize="50dp" />
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+            <CheckBox
+                android:id="@+id/Sub1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="10dp"
+                android:fontFamily="@font/thsarabun"
+                android:onClick="onCheckboxClicked"
+                android:text=" วิชาที่ 1\n อาจารย์"
+                android:textSize="25dp" />
+
+            <CheckBox
+                android:id="@+id/Sub2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="10dp"
+                android:fontFamily="@font/thsarabun"
+                android:onClick="onCheckboxClicked"
+                android:text=" วิชาที่ 2\n อาจารย์"
+                android:textSize="25dp" />
+
+            <CheckBox
+                android:id="@+id/Sub3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="10dp"
+                android:fontFamily="@font/thsarabun"
+                android:onClick="onCheckboxClicked"
+                android:text=" วิชาที่ 3\n อาจารย์"
+                android:textSize="25dp" />
+
+            <CheckBox
+                android:id="@+id/Sub4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="10dp"
+                android:fontFamily="@font/thsarabun"
+                android:onClick="onCheckboxClicked"
+                android:text=" วิชาที่ 4\n อาจารย์"
+                android:textSize="25dp" />
+
+            <CheckBox
+                android:id="@+id/Sub5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="10dp"
+                android:fontFamily="@font/thsarabun"
+                android:onClick="onCheckboxClicked"
+                android:text=" วิชาที่ 5\n อาจารย์"
+                android:textSize="25dp" />
+
+            <CheckBox
+                android:id="@+id/Sub6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="10dp"
+                android:fontFamily="@font/thsarabun"
+                android:onClick="onCheckboxClicked"
+                android:text=" วิชาที่ 6\n อาจารย์"
+                android:textSize="25dp" />
+
+            <CheckBox
+                android:id="@+id/Sub7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="10dp"
+                android:fontFamily="@font/thsarabun"
+                android:onClick="onCheckboxClicked"
+                android:text=" วิชาที่ 7\n อาจารย์"
+                android:textSize="25dp" />
+
+            <CheckBox
+                android:id="@+id/Sub8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="10dp"
+                android:fontFamily="@font/thsarabun"
+                android:onClick="onCheckboxClicked"
+                android:text=" วิชาที่ 8\n อาจารย์"
+                android:textSize="25dp" />
+
+            <CheckBox
+                android:id="@+id/Sub9"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="10dp"
+                android:fontFamily="@font/thsarabun"
+                android:onClick="onCheckboxClicked"
+                android:text=" วิชาที่ 9\n อาจารย์"
+                android:textSize="25dp" />
+                </LinearLayout>
+
+
+
+    </ScrollView>
+        </LinearLayout>
+</FrameLayout>

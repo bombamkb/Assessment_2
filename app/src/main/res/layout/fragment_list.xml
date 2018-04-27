@@ -1,0 +1,92 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.khamban.assessment.list"
+    android:background="#f9e8e8"
+    >
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+        <TextView
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/thsarabun"
+            android:text="รายการ การประเมิน"
+            android:textSize="30dp"
+            android:gravity="center"
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="ปีการศึกษา"
+                android:textSize="25dp"
+                android:fontFamily="@font/thsarabun"
+                android:layout_weight="2"
+                android:layout_marginLeft="10dp"
+                />
+            <Spinner
+                android:id="@+id/year"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:drawable/btn_dropdown"
+                android:spinnerMode="dropdown"
+                android:layout_weight="1"
+                />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="ภาคการศึกษา"
+                android:textSize="25dp"
+                android:fontFamily="@font/thsarabun"
+                android:layout_weight="2"
+                android:layout_marginLeft="10dp"
+                />
+            <Spinner
+                android:id="@+id/term"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:drawable/btn_dropdown"
+                android:spinnerMode="dropdown"
+                android:layout_weight="1"
+                />
+
+        </LinearLayout>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ค้นหา"
+            android:background="#89c0f7"
+            android:layout_gravity="right"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            />
+
+        <fragment
+            android:id="@+id/list_detail"
+            android:name="com.khamban.assessment.List_detail"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp" />
+
+    </LinearLayout>
+</FrameLayout>
