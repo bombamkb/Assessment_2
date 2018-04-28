@@ -5,25 +5,45 @@
     android:layout_height="match_parent"
     tools:context=".Evaluation">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <ImageView
-            android:id="@+id/nav_head"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:src="@drawable/head"
-            android:background="@color/colorhead"
 
-            />
-        <TextView
-            android:layout_below="@+id/nav_head"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="ทำแบบประเมืน"
-            android:fontFamily="@font/thsarabun"
-            android:textSize="40dp"
-            android:gravity="center"/>
-    </RelativeLayout>
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/nav_head"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="@color/colorhead"
+                android:src="@drawable/head"
+
+                />
+
+            <TextView
+                android:id="@+id/txt_head"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/nav_head"
+                android:fontFamily="@font/thsarabun"
+                android:gravity="center"
+                android:text="ทำแบบประเมิน"
+                android:textSize="40dp" />
+
+            <!-- A CardView that contains a TextView -->
+
+
+                <android.support.v7.widget.RecyclerView
+                    android:layout_below="@+id/txt_head"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/Recy_doing"
+                    >
+                </android.support.v7.widget.RecyclerView>
+
+
+
+
+
+        </RelativeLayout>
 
 </FrameLayout>
