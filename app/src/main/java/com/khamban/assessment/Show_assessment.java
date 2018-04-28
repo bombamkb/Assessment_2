@@ -46,7 +46,6 @@ public class Show_assessment extends Fragment {
 //        items = mySQLConnect.getAssessment();
         getAssessment();
         dataViews = (ListView)view.findViewById(R.id.Lis_2);
-
     return view;
     }
 

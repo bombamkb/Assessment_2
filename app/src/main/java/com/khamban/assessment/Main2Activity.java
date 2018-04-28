@@ -121,7 +121,7 @@ public class Main2Activity extends AppCompatActivity
 
         } else if (id == R.id.nav_status) {
             Toast.makeText(this,"ทำแบบประเมืน",Toast.LENGTH_SHORT).show();
-            List_detail List = new List_detail();
+            Evaluation List = new Evaluation();
             FragmentManager manager = getSupportFragmentManager();
             manager.beginTransaction().replace(R.id.main ,List).commit();
 

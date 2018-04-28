@@ -3,47 +3,49 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#ffffff"
     tools:context=".Evaluation">
 
 
-        <RelativeLayout
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/nav_head"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="60dp"
+            android:background="@color/colorhead"
+            android:src="@drawable/head"
 
-            <ImageView
-                android:id="@+id/nav_head"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:background="@color/colorhead"
-                android:src="@drawable/head"
+            />
 
-                />
+        <TextView
+            android:id="@+id/txt_head"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/nav_head"
+            android:fontFamily="@font/thsarabun"
+            android:gravity="center"
+            android:text="ทำแบบประเมิน"
+            android:textSize="40dp" />
 
-            <TextView
-                android:id="@+id/txt_head"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/nav_head"
-                android:fontFamily="@font/thsarabun"
-                android:gravity="center"
-                android:text="ทำแบบประเมิน"
-                android:textSize="40dp" />
+        <!-- A CardView that contains a TextView -->
 
-            <!-- A CardView that contains a TextView -->
 
 
                 <android.support.v7.widget.RecyclerView
-                    android:layout_below="@+id/txt_head"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
                     android:id="@+id/Recy_doing"
-                    >
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/txt_head">
+
                 </android.support.v7.widget.RecyclerView>
 
 
 
 
 
-        </RelativeLayout>
+    </RelativeLayout>
 
 </FrameLayout>
