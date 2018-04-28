@@ -1,8 +1,6 @@
 package com.khamban.assessment;
 
 import android.app.Activity;
-import android.support.v4.app.FragmentActivity;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.Toast;
 
@@ -11,7 +9,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.khamban.Adapter.Adapt_Assessment;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -66,7 +63,7 @@ public class MySQLConnect {
        requestQueue.add(stringRequest);
         return list;
     }
-    public void showAssessment(String response){
+    public List<String> showAssessment(String response){
         Toast.makeText(main, "เข้าลูป 2", Toast.LENGTH_SHORT).show();
         String evaName ="";
 
@@ -79,9 +76,9 @@ public class MySQLConnect {
                 evaName = collectData.getString("name");
                 list.add(evaName);
             }
-
         }catch (JSONException ex){ex.printStackTrace();}
 
+        return list;
     }
 
     //    Function getReport For แบบประเมินที่ประเมินแล้ว

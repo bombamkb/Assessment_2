@@ -13,16 +13,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.khamban.assessment.Add_course;
-import com.khamban.assessment.List_detail;
 import com.khamban.assessment.MySQLConnect;
 import com.khamban.assessment.R;
 
 import java.util.List;
 
 public class Adapt_Assessment extends RecyclerView.Adapter<Adapt_Assessment.viewHolder> {
-    private static List<String> items;
+    private static String[] items;
 
-    public Adapt_Assessment(List<String> items) {
+    public Adapt_Assessment(String[] items) {
         this.items = items;
     }
 
@@ -42,14 +41,14 @@ public class Adapt_Assessment extends RecyclerView.Adapter<Adapt_Assessment.view
 
         @Override
         public int getItemCount() {
-            return items.size();
+            return items.length;
         }
 
 
         public class viewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
             TextView title;
             Button btn1;
-            private List<String> items;
+//            private List<String> items;
             private MySQLConnect mySQLConnect;
 
 
@@ -62,10 +61,10 @@ public class Adapt_Assessment extends RecyclerView.Adapter<Adapt_Assessment.view
             }
 
             public void bindView(int Position) {
-                items = mySQLConnect.getReport();
+//                items = mySQLConnect.getReport();
 //            recyclerview.setAdapter(new ArrayAdapter<String>(getActivity(),android.R.layout.simple_list_item_1,items);
 //            title.setText(OurData.title[Position]);
-                title.setText(items.get(Position));
+                title.setText(items[Position]);
             }
 
 

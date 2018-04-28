@@ -76,9 +76,28 @@ public class List_detail extends Fragment {
         StringRequest stringRequest = new StringRequest(url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                showAssessment(response);
+//                showAssessment(response);
+                try {
+                    JSONObject jsonObject = new JSONObject(response);
+                    JSONArray result =  jsonObject.getJSONArray("Assessment");
+                    String evaName = "";
+                    String[] data = new String[result.length()];
+                    for (int i = 0 ; i < result.length();i++){
+                        JSONObject collectData = result.getJSONObject(i);
+                        evaName = collectData.getString("name");
+                        Log.d("onResponse", "onResponse: "+evaName);
+//                        list.add("xxx");
+                        data[i] = evaName;
+                    }
+                    Log.d("onResponse", "onResponse: "+data.length);
+                    Adapt_Assessment adapter = new Adapt_Assessment(data);
+                    recyclerview.setAdapter(adapter);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
                 Toast.makeText(getActivity(), "เข้าลูป", Toast.LENGTH_SHORT).show();
-                Toast.makeText(getActivity(), list.get(0), Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getActivity(), list.get(0), Toast.LENGTH_SHORT).show();
 
             }
         }, new Response.ErrorListener() {
@@ -107,8 +126,8 @@ public class List_detail extends Fragment {
                 evaName = collectData.getString("name");
                 list.add(evaName);
             }
-            Adapt_Assessment adapter = new Adapt_Assessment(list);
-            recyclerview.setAdapter(adapter);
+           /* Adapt_Assessment adapter = new Adapt_Assessment(list);
+            recyclerview.setAdapter(adapter);*/
         }catch (JSONException ex){ex.printStackTrace();}
 
     }
