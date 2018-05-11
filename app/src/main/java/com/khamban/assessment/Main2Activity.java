@@ -1,25 +1,37 @@
 package com.khamban.assessment;
 
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.PopupMenu;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Spinner;
 import android.widget.Toast;
+
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.List;
 
@@ -35,7 +47,7 @@ public class Main2Activity extends AppCompatActivity
         setContentView(R.layout.activity_main2);
 //        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 //        setSupportActionBar(toolbar);
-
+        getAssessment();
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,6 +66,8 @@ public class Main2Activity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+
+//        dataViews.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1,items2)); //ทดแทนกันโดยเรียกใช้ adt แทน
 
 
 
@@ -102,39 +116,16 @@ public class Main2Activity extends AppCompatActivity
             startActivity(home);
 
         }
-        else if (id == R.id.nav_detail) {
-            Toast.makeText(this,"รายการแบบประเมินที่ต้องประเมิน",Toast.LENGTH_SHORT).show();
-            Show_assessment report_page = new Show_assessment();
-            FragmentManager manager = getSupportFragmentManager();
-            manager.beginTransaction().replace(R.id.main ,report_page).commit();
-
-
-        }
-
-        else if (id == R.id.nav_add) {
+        else if (id == R.id.nav_report) {
             Toast.makeText(this,"รายงานการทำแบบประเมิน",Toast.LENGTH_SHORT).show();
             list list_page = new list();
             FragmentManager manager = getSupportFragmentManager();
             manager.beginTransaction().replace(R.id.main ,list_page).commit();
+        }
+        else if (id == R.id.nav_setting) {
 
-
-
-        } else if (id == R.id.nav_status) {
-            Toast.makeText(this,"ทำแบบประเมืน",Toast.LENGTH_SHORT).show();
-            Evaluation List = new Evaluation();
-            FragmentManager manager = getSupportFragmentManager();
-            manager.beginTransaction().replace(R.id.main ,List).commit();
-
-        } else if (id == R.id.nav_report) {
-
-            Toast.makeText(this,"เพิ่มรายวิขา",Toast.LENGTH_SHORT).show();
-            Add_course home_page = new Add_course();
-            FragmentManager manager = getSupportFragmentManager();
-            manager.beginTransaction().replace(R.id.main ,home_page).commit();
-
-        } else if (id == R.id.nav_setting) {
-
-        } else if (id == R.id.nav_logout) {
+        }
+        else if (id == R.id.nav_logout) {
             logout();
         }
 
@@ -162,4 +153,61 @@ public class Main2Activity extends AppCompatActivity
         AlertDialog alert = builder.create();
         alert.show();
 }
+
+    public void getAssessment(){
+        String url = "http://10.80.39.17/TSP58/nursing/application/controllers/amis/Mobile/Android/sqlfile.php";
+//        Toast.makeText(Main2Activity.this, "เข้าฟังก์ชัน", Toast.LENGTH_SHORT).show();
+
+
+        StringRequest stringRequest = new StringRequest(url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject jsonObject = new JSONObject(response);
+                    JSONArray result = jsonObject.getJSONArray("Assessment");
+                    String[] arr = new String[result.length()];
+                    for (int i = 0; i < result.length(); i++) {
+                        JSONObject collectData = result.getJSONObject(i);
+                        String evaName = collectData.getString("name");
+//                        items.add(evaName);
+                        arr[i] = evaName;
+                    }
+                    final ListView dataViews = (ListView) findViewById(R.id.Lis_2);
+                    dataViews.setAdapter(new ArrayAdapter<String>(Main2Activity.this, android.R.layout.simple_list_item_1,arr));//ทดแทนกันโดยเรียกใช้ adt แทน
+                    dataViews.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
+                                            Toast.makeText(Main2Activity.this, "Item id: " +id +"Position :"+position, Toast.LENGTH_SHORT).show();
+                                            Evaluation List = new Evaluation(position);
+                                            FragmentManager manager = getSupportFragmentManager();
+                                            manager.beginTransaction().replace(R.id.main, List).commit();
+
+                                    }
+
+                    });
+                } catch (JSONException ex) {
+                    ex.printStackTrace();
+                }
+//                showAssessment(response);
+//                Toast.makeText(Main2Activity.this, "เข้าลูป", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(Main2Activity.this, items.get(0), Toast.LENGTH_SHORT).show();
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+//                Toast.makeText(Main2Activity.this, error.getMessage().toString(), Toast.LENGTH_SHORT).show();
+            }
+        }
+
+        );
+//
+        RequestQueue requestQueue = Volley.newRequestQueue(Main2Activity.this.getApplicationContext());
+        requestQueue.add(stringRequest);
+
+
+//        return arr;
+    }
+
 }
+
+

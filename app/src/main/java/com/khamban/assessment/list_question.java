@@ -11,10 +11,10 @@ import android.view.ViewGroup;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class Report extends Fragment {
+public class list_question extends Fragment {
 
 
-    public Report() {
+    public list_question() {
         // Required empty public constructor
     }
 
@@ -23,7 +23,7 @@ public class Report extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_report, container, false);
+        return inflater.inflate(R.layout.fragment_list_question, container, false);
     }
 
 }

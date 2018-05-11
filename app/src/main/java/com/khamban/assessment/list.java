@@ -43,12 +43,7 @@ public class list extends Fragment {
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.add(R.id.list_detail, fragment);
         fragmentTransaction.commit();
-
-
-
         return view;
-
-//        return inflater.inflate(R.layout.fragment_list, container, false);
 
     }
 

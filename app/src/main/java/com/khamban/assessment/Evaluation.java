@@ -1,6 +1,7 @@
 package com.khamban.assessment;
 
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -35,14 +36,17 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
+@SuppressLint("ValidFragment")
 public class Evaluation extends Fragment {
     private List<String> items, list, list2, items2;
-    private String URL = "http://10.80.39.17/TSP58/nursing/application/controllers/amis/Mobile/Android/sqlfile.php";
+    private String URL = "http://10.80.39.17/TSP58/nursing/application/controllers/amis/Mobile/Android/sqlfile.php?status=0";
     private RecyclerView recyclerview;
     private ListView dataViews;
+    int index;
 
 
-    public Evaluation() {
+    public Evaluation(int index) {
+        this.index = index;
         // Required empty public constructor
     }
 
@@ -55,7 +59,7 @@ public class Evaluation extends Fragment {
         recyclerview = (RecyclerView) view.findViewById(R.id.Recy_doing);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recyclerview.setLayoutManager(layoutManager);
-        items = getquesstion1();
+        items = getquesstion1(index);
 
 //        dataViews = (ListView) view.findViewById(R.id.Lis_sub);
 //        items2 = getSubquestion();
@@ -64,37 +68,29 @@ public class Evaluation extends Fragment {
         return view;
     }
 
-    public List<String> getquesstion1() {
+    public List<String> getquesstion1(int index) {
         String url = URL;
+        index = index + 1;
+
 //        Toast.makeText(main, "เข้าฟังก์ชัน", Toast.LENGTH_SHORT).show();
 
+        final int finalIndex = index;
         StringRequest stringRequest = new StringRequest(url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-//                showQuesstion1(response);
                 try {
 
                     JSONObject jsonObject = new JSONObject(response);
-                    JSONArray result = jsonObject.getJSONArray("Topic_term1");
-//                    JSONArray result_1 = jsonObject.getJSONArray("Ruestion_sub1_term1");
-//                    JSONArray result_2 = jsonObject.getJSONArray("Ruestion_sub2_term1");
-//                    JSONArray result_3 = jsonObject.getJSONArray("Ruestion_sub3_term1");
-//                    JSONArray result_4 = jsonObject.getJSONArray("Ruestion_sub4_term1");
+                    JSONArray result = jsonObject.getJSONArray(String.format("Topic_term%d", finalIndex));
                     String[] list_questtion1_term1 = new String[result.length()];
-//                    Listt<String> =
-//                    String[] sub_questtion1_term1 = new String[result_1.length()];
                     String Question = "", Sub_Question = "";
                     int k = 0;
-//                    String[] Sub_Question = new String[result_1.length()];
                     ArrayList<Topic> topics = new ArrayList<>();
                     for (int i = 0; i < result.length(); i++) {
                         JSONObject collectData = result.getJSONObject(i);
                         Question = collectData.getString("Question");
-                        JSONArray res = collectData.getJSONArray("Sub_1_name");
-//                        String str = collectData.getString("Sub_1_name");
-//                        List<String> res = Collections.singletonList(str);
+                        JSONArray res = collectData.getJSONArray("Sub_"+ finalIndex +"_name");
                         Log.d("onResponse", "onResponse: " + Question);
-//                        Log.d("onResponse", "onResponse: "+res.length());
                         list_questtion1_term1[i] = Question;
                         List<String> arr = new ArrayList<String>();
                         for (int j = 0; j < res.length(); j++) {
@@ -102,51 +98,11 @@ public class Evaluation extends Fragment {
                             Log.d("onResponse", "onResponse: " + res.get(j));
                         }
                         topics.add(new Topic(Question,arr));
-
-//                        if(i == 0 ) {
-
-//                            for (int j = 0; j < result_1.length(); j++) {
-//                                JSONObject collectData_1 = result_1.getJSONObject(j);
-//                                Sub_Question = collectData_1.getString("Sub_1_name");
-//                                sub_questtion1_term1[j] = Sub_Question;
-//                            }
-//                        }
-//                        if(i==1){
-//                            list_questtion1_term1 = new String[result.length()+result_2.length()];
-//                            for (int j = 0; j < result_1.length(); j++) {
-//                                JSONObject collectData_1 = result_2.getJSONObject(j);
-//                                Sub_Question = collectData_1.getString("Sub_2_name");
-//                                list_questtion1_term1[k] = Sub_Question;
-//                                k++;
-//                            }
-//
-//                        }
-//                        if(i==2){
-//                            list_questtion1_term1 = new String[result.length()+result_3.length()];
-//                            for (int j = 0; j < result_1.length(); j++) {
-//                                JSONObject collectData_1 = result_3.getJSONObject(j);
-//                                Sub_Question = collectData_1.getString("Sub_3_name");
-//                                list_questtion1_term1[k] = Sub_Question;
-//                                k++;
-//                            }
-//                        }
-//                        if(i==3){
-//                            list_questtion1_term1 = new String[result.length()+result_4.length()];
-//                            for (int j = 0; j < result_1.length(); j++) {
-//                                JSONObject collectData_1 = result_4.getJSONObject(j);
-//                                Sub_Question = collectData_1.getString("Sub_4_name");
-//                                list_questtion1_term1[k] = Sub_Question;
-//                                k++;
-//                            }
-//                        }
                     }
                     Log.d("onResponse", "onResponse: " + list_questtion1_term1.length);
                     Adapt_Makeassess adapter = new Adapt_Makeassess(topics);//list_questtion1_term1
-//                    ListOf_evaluation list = new ListOf_evaluation(sub_questtion1_term1);
                     recyclerview.setAdapter(adapter);
 
-//                    ListView dataViews = (ListView) getView().findViewById(R.id.Lis_sub);
-//                    dataViews.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1,sub_questtion1_term1));
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -157,7 +113,7 @@ public class Evaluation extends Fragment {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getActivity(), error.getMessage().toString(), Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getActivity(), error.getMessage().toString(), Toast.LENGTH_SHORT).show();
             }
         }
 
@@ -169,7 +125,7 @@ public class Evaluation extends Fragment {
 
     public List<String> getSubquestion() {
         String url = URL;
-        Toast.makeText(getActivity(), "เข้าฟังก์ชัน", Toast.LENGTH_SHORT).show();
+//        Toast.makeText(getActivity(), "เข้าฟังก์ชัน", Toast.LENGTH_SHORT).show();
 
         StringRequest stringRequest = new StringRequest(url, new Response.Listener<String>() {
             @Override
@@ -192,14 +148,14 @@ public class Evaluation extends Fragment {
                     e.printStackTrace();
                 }
 
-                Toast.makeText(getActivity(), "เข้าลูป", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getActivity(), "เข้าลูป", Toast.LENGTH_SHORT).show();
 //                Toast.makeText(getActivity(), list.get(0), Toast.LENGTH_SHORT).show();
 
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getActivity(), error.getMessage().toString(), Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getActivity(), error.getMessage().toString(), Toast.LENGTH_SHORT).show();
             }
         }
 

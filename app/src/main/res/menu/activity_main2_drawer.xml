@@ -7,24 +7,11 @@
         <item
             android:id="@+id/nav_open"
             android:icon="@drawable/ic_menu_camera"
-            android:title="กำหนดแบบประเมิน อาจารย์" />
-        <item
-            android:id="@+id/nav_detail"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="รายการแบบประเมิน" />
-
-        <item
-            android:id="@+id/nav_add"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="เพิ่มรายวิชา" />
-        <item
-            android:id="@+id/nav_status"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="สถานะการประเมิน" />
+            android:title="ทำแบบประเมิน" />
         <item
             android:id="@+id/nav_report"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="รายงานการประเมิน" />
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="ดูรายงานแบบประเมิน" />
     </group>
 
     <item android:title="Manage">

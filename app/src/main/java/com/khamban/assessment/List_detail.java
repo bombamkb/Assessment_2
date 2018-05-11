@@ -79,7 +79,7 @@ public class List_detail extends Fragment {
 //                showAssessment(response);
                 try {
                     JSONObject jsonObject = new JSONObject(response);
-                    JSONArray result =  jsonObject.getJSONArray("Assessment");
+                    JSONArray result =  jsonObject.getJSONArray("Assessment_of");
                     String evaName = "";
                     String[] data = new String[result.length()];
                     for (int i = 0 ; i < result.length();i++){
@@ -103,7 +103,7 @@ public class List_detail extends Fragment {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getActivity(), error.getMessage().toString(),Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getActivity(), error.getMessage().toString(),Toast.LENGTH_SHORT).show();
             }
         }
 
@@ -114,12 +114,12 @@ public class List_detail extends Fragment {
         return list;
     }
     public void showAssessment(String response){
-        Toast.makeText(getActivity(), "เข้าลูป 2", Toast.LENGTH_SHORT).show();
+//        Toast.makeText(getActivity(), "เข้าลูป 2", Toast.LENGTH_SHORT).show();
         String evaName ="";
 
         try{
             JSONObject jsonObject = new JSONObject(response);
-            JSONArray result =  jsonObject.getJSONArray("Assessment");
+            JSONArray result =  jsonObject.getJSONArray("Assessment_of");
 
             for (int i = 0 ; i < result.length();i++){
                 JSONObject collectData = result.getJSONObject(i);
