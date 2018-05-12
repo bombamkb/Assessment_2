@@ -8,18 +8,27 @@
 
     <!-- TODO: Update blank fragment layout -->
 
+
     <LinearLayout
 
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         >
+        <ImageView
+            android:id="@+id/nav_head"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@color/colorhead"
+            android:src="@drawable/head"
+
+            />
         <TextView
 
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/thsarabun"
-            android:text="รายการ การประเมิน"
+            android:text="รายงานแบบประเมิน"
             android:textSize="30dp"
             android:gravity="center"
             />

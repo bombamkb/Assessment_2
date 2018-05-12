@@ -82,22 +82,40 @@ public class Evaluation extends Fragment {
 
                     JSONObject jsonObject = new JSONObject(response);
                     JSONArray result = jsonObject.getJSONArray(String.format("Topic_term%d", finalIndex));
+//
+                    JSONObject jsonObject1 = new JSONObject(response);
+                    JSONArray result1 = jsonObject1.getJSONArray(String.format("Result_%d", finalIndex));
+//
+
                     String[] list_questtion1_term1 = new String[result.length()];
-                    String Question = "", Sub_Question = "";
+                    String Question = "";
+//
+                    String[] list_point = new String[result1.length()];
+                    String Point_ques = "";
                     int k = 0;
                     ArrayList<Topic> topics = new ArrayList<>();
+                    ArrayList<Topic> topics1 = new ArrayList<>();
                     for (int i = 0; i < result.length(); i++) {
                         JSONObject collectData = result.getJSONObject(i);
                         Question = collectData.getString("Question");
                         JSONArray res = collectData.getJSONArray("Sub_"+ finalIndex +"_name");
+//
+                        JSONObject collectData1 = result.getJSONObject(i);
+                        Point_ques = collectData1.getString("Question");
+                        JSONArray res1 = collectData1.getJSONArray("Point_"+ finalIndex);
+
                         Log.d("onResponse", "onResponse: " + Question);
                         list_questtion1_term1[i] = Question;
+                        list_point[i] = Point_ques;
                         List<String> arr = new ArrayList<String>();
+                        List<String> arr1 = new ArrayList<String>();
                         for (int j = 0; j < res.length(); j++) {
                             arr.add(res.get(j).toString());
+                            arr1.add(res1.get(j).toString());
                             Log.d("onResponse", "onResponse: " + res.get(j));
                         }
-                        topics.add(new Topic(Question,arr));
+//                        topics1.add(new Topic(Point_ques,arr1));
+                        topics.add(new Topic(Question,arr,arr1));
                     }
                     Log.d("onResponse", "onResponse: " + list_questtion1_term1.length);
                     Adapt_Makeassess adapter = new Adapt_Makeassess(topics);//list_questtion1_term1

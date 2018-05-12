@@ -7,20 +7,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.khamban.assessment.MySQLConnect;
 import com.khamban.assessment.R;
-import com.khamban.model.Topic;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class Adapt_question extends RecyclerView.Adapter<Adapt_question.viewHolder_question> {
+public class Adapt_Report extends RecyclerView.Adapter<Adapt_Report.viewHolder_report> {
     private static String[] items;
-    private List<String> topics,point;
-    private int topic,opton;
+    private List<String> topics;
+    private int topic;
     private Context main;
 
 //    public Adapt_question(String[] items) {
@@ -31,17 +28,16 @@ public class Adapt_question extends RecyclerView.Adapter<Adapt_question.viewHold
 //        this.topics = topics;
 //    }
 
-    public Adapt_question(List<String> topics, List<String> point,int option) {
+    public Adapt_Report(List<String> topics) {
         this.topics = topics;
-        this.point = point;
-        this.opton = option;
+        this.topic = topic;
     }
 
     @Override
-    public Adapt_question.viewHolder_question onCreateViewHolder(ViewGroup parent, int viewType) {
+    public Adapt_Report.viewHolder_report onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View view = inflater.from(parent.getContext()).inflate(R.layout.fragment_list_question, parent, false);
-        viewHolder_question VHolder = new viewHolder_question(view);
+        View view = inflater.from(parent.getContext()).inflate(R.layout.fragment_list_of_report, parent, false);
+        Adapt_Report.viewHolder_report VHolder = new Adapt_Report.viewHolder_report(view);
         main = parent.getContext();
 
 
@@ -49,8 +45,8 @@ public class Adapt_question extends RecyclerView.Adapter<Adapt_question.viewHold
     }
 
     @Override
-    public void onBindViewHolder(Adapt_question.viewHolder_question holder, int position) {
-        ((Adapt_question.viewHolder_question) holder).bindView(position);
+    public void onBindViewHolder(Adapt_Report.viewHolder_report holder, int position) {
+        ((Adapt_Report.viewHolder_report) holder).bindView(position);
 //            for (int i = 0; i < topics.get(position).getSubName().size(); i++) {
 //                holder.title.setText(topics.get(i).getSubName().get(i));
 //                Log.d("Topic1A", "index: " + position + "Topic1A: " + topics.get(position).getSubName().get(i));
@@ -73,33 +69,18 @@ public class Adapt_question extends RecyclerView.Adapter<Adapt_question.viewHold
     }
 
 
-    public class viewHolder_question extends RecyclerView.ViewHolder {
-        TextView title,point_of;
+    public class viewHolder_report extends RecyclerView.ViewHolder {
+        TextView title,title2;
         Button btn1;
         String Question = "";
-        RadioGroup radi1,radi2,radi3,radi4,radi5;
         //            private List<String> items;
         private MySQLConnect mySQLConnect;
 
 
-        public viewHolder_question(View itemView) {
+        public viewHolder_report(View itemView) {
             super(itemView);
-            title = (TextView) itemView.findViewById(R.id.Question_a);
-            point_of = (TextView) itemView.findViewById(R.id.txt_point);
-            radi1 = (RadioGroup) itemView.findViewById(R.id.point_1);
-            radi2 = (RadioGroup) itemView.findViewById(R.id.point_2);
-            radi3 = (RadioGroup) itemView.findViewById(R.id.point_3);
-            radi4 = (RadioGroup) itemView.findViewById(R.id.point_4);
-            radi5 = (RadioGroup) itemView.findViewById(R.id.point_5);
-
-            if (opton==1){
-                point_of.setVisibility(View.INVISIBLE);
-                radi1.setVisibility(View.VISIBLE);
-                radi2.setVisibility(View.VISIBLE);
-                radi3.setVisibility(View.VISIBLE);
-                radi4.setVisibility(View.VISIBLE);
-                radi5.setVisibility(View.VISIBLE);
-            }
+            title = (TextView) itemView.findViewById(R.id.list_ques);
+            title2 = (TextView) itemView.findViewById(R.id.list_point);
 //            btn1 = (Button)itemView.findViewById(R.id.order);
 
         }
@@ -107,8 +88,7 @@ public class Adapt_question extends RecyclerView.Adapter<Adapt_question.viewHold
         public void bindView(int Position) {
             for (int i = 0; i <topics.get(Position).length(); i++){
                 title.setText(topics.get(Position));
-                point_of.setText(point.get(Position));
-                Log.d("Topic1A", "index: "+Position+"Topic1A: " + topics.get(Position)+point.get(Position));
+                Log.d("Topic1A", "index: "+Position+"Topic1A: " + topics.get(Position));
                 Log.d("Topic1", "index: "+Position+"Topic1: " + topics.get(Position).length());
 //
 //
@@ -133,3 +113,5 @@ public class Adapt_question extends RecyclerView.Adapter<Adapt_question.viewHold
 
     }
 }
+
+

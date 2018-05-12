@@ -155,7 +155,7 @@ public class Main2Activity extends AppCompatActivity
 }
 
     public void getAssessment(){
-        String url = "http://10.80.39.17/TSP58/nursing/application/controllers/amis/Mobile/Android/sqlfile.php";
+        String url = "http://10.80.39.17/TSP58/nursing/application/controllers/amis/Mobile/Android/sqlfile.php?status=0";
 //        Toast.makeText(Main2Activity.this, "เข้าฟังก์ชัน", Toast.LENGTH_SHORT).show();
 
 

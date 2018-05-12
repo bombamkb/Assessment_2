@@ -5,11 +5,12 @@ import java.util.List;
 
 public class Topic implements Serializable{
     private String question;
-    private List<String> subName;
+    private List<String> subName,point;
 
-    public Topic(String question, List<String> subName) {
+    public Topic(String question, List<String> subName,List<String> point) {
         this.question = question;
         this.subName = subName;
+        this.point = point;
     }
 
     public String getQuestion() {
@@ -22,6 +23,9 @@ public class Topic implements Serializable{
 
     public List<String> getSubName() {
         return subName;
+    }
+    public List<String> getPoint() {
+        return point;
     }
 
     public void setSubName(List<String> subName) {
