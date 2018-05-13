@@ -42,7 +42,7 @@ public class Evaluation extends Fragment {
     private String URL = "http://10.80.39.17/TSP58/nursing/application/controllers/amis/Mobile/Android/sqlfile.php";
     private RecyclerView recyclerview;
     private ListView dataViews;
-    int index;
+    int index,option;
 
 
     public Evaluation(int index) {
@@ -64,28 +64,24 @@ public class Evaluation extends Fragment {
         return view;
     }
 
-    public List<String> getquesstion1(int index) {
+    public List<String> getquesstion1(final int index) {
         String url = URL;
 
 //        Toast.makeText(main, "เข้าฟังก์ชัน", Toast.LENGTH_SHORT).show();
 
-        final int finalIndex = index;
+//        final int finalIndex;
+        Toast.makeText(getActivity(), ""+index, Toast.LENGTH_SHORT).show();
         StringRequest stringRequest = new StringRequest(url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 try {
 
                     JSONObject jsonObject = new JSONObject(response);
-                    JSONArray result = jsonObject.getJSONArray(String.format("Topic_term%d", finalIndex));
-//
-                    JSONObject jsonObject1 = new JSONObject(response);
-                    JSONArray result1 = jsonObject1.getJSONArray(String.format("Result_%d", finalIndex));
-//
-
+                    JSONArray result = jsonObject.getJSONArray(String.format("Topic_term%d", index));
+                    Log.d("Topic_term", "Topic_term: " + index);
                     String[] list_questtion1_term1 = new String[result.length()];
                     String Question = "";
-//
-                    String[] list_point = new String[result1.length()];
+                    String[] list_point = new String[result.length()];
                     String Point_ques = "";
                     int k = 0;
                     ArrayList<Topic> topics = new ArrayList<>();
@@ -93,11 +89,7 @@ public class Evaluation extends Fragment {
                     for (int i = 0; i < result.length(); i++) {
                         JSONObject collectData = result.getJSONObject(i);
                         Question = collectData.getString("Question");
-                        JSONArray res = collectData.getJSONArray("Sub_"+ finalIndex +"_name");
-//
-                        JSONObject collectData1 = result1.getJSONObject(i);
-                        Point_ques = collectData1.getString("Question");
-                        JSONArray res1 = collectData1.getJSONArray("Point_"+ finalIndex);
+                        JSONArray res = collectData.getJSONArray("Sub_"+ index +"_name");
 
                         Log.d("onResponse", "onResponse: " + Question);
                         list_questtion1_term1[i] = Question;
@@ -106,11 +98,11 @@ public class Evaluation extends Fragment {
                         List<String> arr1 = new ArrayList<String>();
                         for (int j = 0; j < res.length(); j++) {
                             arr.add(res.get(j).toString());
-                            arr1.add(res1.get(j).toString());
                             Log.d("onResponse", "onResponse: " + res.get(j));
                         }
 //                        topics1.add(new Topic(Point_ques,arr1));
-                        topics.add(new Topic(Question,arr,arr1));
+                        topics.add(new Topic(Question,arr));
+                        k = arr.size();
                     }
                     Log.d("onResponse", "onResponse: " + list_questtion1_term1.length);
                     Adapt_Makeassess adapter = new Adapt_Makeassess(topics);//list_questtion1_term1

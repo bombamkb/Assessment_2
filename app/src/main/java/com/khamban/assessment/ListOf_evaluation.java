@@ -47,8 +47,10 @@ public class ListOf_evaluation extends Fragment {
     private String[] toppings,data;
     private ListView dataViews;
     private RecyclerView recyclerview_question;
+    private int index;
 
-    public ListOf_evaluation() {
+    public ListOf_evaluation(int index) {
+        this.index = index;
         // Required empty public constructor
 //        this.sub_questtion1_term1 = sub_questtion1_term1;
     }
@@ -63,7 +65,7 @@ public class ListOf_evaluation extends Fragment {
         recyclerview_question = (RecyclerView) view.findViewById(R.id.Recy_radio);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recyclerview_question.setLayoutManager(layoutManager);
-        items = getquesstion1(1);
+        items = getquesstion1(index);
 
 //        dataViews = (ListView) view.findViewById(R.id.Lis_sub);
 //        items2 = getSubquestion();
@@ -73,53 +75,43 @@ public class ListOf_evaluation extends Fragment {
         return view;
     }
 
-    public List<String> getquesstion1(int index) {
+    public List<String> getquesstion1(final int index) {
         String url = URL;
-        index = index + 1;
 //        Toast.makeText(main, "เข้าฟังก์ชัน", Toast.LENGTH_SHORT).show();
 
-        final int finalIndex = index;
+//        final int finalIndex = index;
         StringRequest stringRequest = new StringRequest(url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 try {
 
                     JSONObject jsonObject = new JSONObject(response);
-                    JSONArray result = jsonObject.getJSONArray(String.format("Topic_term%d", finalIndex));
-//
-                    JSONObject jsonObject1 = new JSONObject(response);
-                    JSONArray result1 = jsonObject1.getJSONArray(String.format("Result_%d", finalIndex));
+                    JSONArray result = jsonObject.getJSONArray(String.format("Topic_term%d", index));
 //
 
                     String[] list_questtion1_term1 = new String[result.length()];
                     String Question = "";
-//
-                    String[] list_point = new String[result1.length()];
-                    String Point_ques = "";
                     int k = 0;
                     ArrayList<Topic> topics = new ArrayList<>();
                     ArrayList<Topic> topics1 = new ArrayList<>();
                     for (int i = 0; i < result.length(); i++) {
                         JSONObject collectData = result.getJSONObject(i);
                         Question = collectData.getString("Question");
-                        JSONArray res = collectData.getJSONArray("Sub_"+ finalIndex +"_name");
+                        JSONArray res = collectData.getJSONArray("Sub_"+ index +"_name");
 //
-                        JSONObject collectData1 = result1.getJSONObject(i);
-                        Point_ques = collectData1.getString("Question");
-                        JSONArray res1 = collectData1.getJSONArray("Point_"+ finalIndex);
 
                         Log.d("onResponse", "onResponse: " + Question);
                         list_questtion1_term1[i] = Question;
-                        list_point[i] = Point_ques;
+
                         List<String> arr = new ArrayList<String>();
                         List<String> arr1 = new ArrayList<String>();
                         for (int j = 0; j < res.length(); j++) {
                             arr.add(res.get(j).toString());
-                            arr1.add(res1.get(j).toString());
                             Log.d("onResponse", "onResponse: " + res.get(j));
                         }
 //                        topics1.add(new Topic(Point_ques,arr1));
-                        topics.add(new Topic(Question,arr,arr1));
+                        topics.add(new Topic(Question,arr));
+                        k= arr.size();
                     }
                     Log.d("onResponse", "onResponse: " + list_questtion1_term1.length);
                     Adapt_Makeassess adapter = new Adapt_Makeassess(topics);//list_questtion1_term1

@@ -7,10 +7,9 @@ public class Topic implements Serializable{
     private String question;
     private List<String> subName,point;
 
-    public Topic(String question, List<String> subName,List<String> point) {
+    public Topic(String question, List<String> subName) {
         this.question = question;
         this.subName = subName;
-        this.point = point;
     }
 
     public String getQuestion() {

@@ -33,10 +33,8 @@ public class Adapt_question extends RecyclerView.Adapter<Adapt_question.viewHold
 //        this.topics = topics;
 //    }
 
-    public Adapt_question(List<String> topics, List<String> point,int option) {
+    public Adapt_question(List<String> topics) {
         this.topics = topics;
-        this.point = point;
-        this.opton = option;
     }
 
     @Override
@@ -74,37 +72,20 @@ public class Adapt_question extends RecyclerView.Adapter<Adapt_question.viewHold
         public viewHolder_question(View itemView) {
             super(itemView);
             title = (TextView) itemView.findViewById(R.id.Question_a);
-            point_of = (TextView) itemView.findViewById(R.id.txt_point);
             radi1 = (RadioButton) itemView.findViewById(R.id.point_1);
             radi2 = (RadioButton) itemView.findViewById(R.id.point_2);
             radi3 = (RadioButton) itemView.findViewById(R.id.point_3);
             radi4 = (RadioButton) itemView.findViewById(R.id.point_4);
             radi5 = (RadioButton) itemView.findViewById(R.id.point_5);
 
-            if (opton==1){
-                point_of.setVisibility(View.VISIBLE);
-                radi1.setVisibility(View.INVISIBLE);
-                radi2.setVisibility(View.INVISIBLE);
-                radi3.setVisibility(View.INVISIBLE);
-                radi4.setVisibility(View.INVISIBLE);
-                radi5.setVisibility(View.INVISIBLE);
-            }
-            if(opton==0){
-                point_of.setVisibility(View.INVISIBLE);
-                radi1.setVisibility(View.VISIBLE);
-                radi2.setVisibility(View.VISIBLE);
-                radi3.setVisibility(View.VISIBLE);
-                radi4.setVisibility(View.VISIBLE);
-                radi5.setVisibility(View.VISIBLE);
-            }
 
         }
 
         public void bindView(int Position) {
             for (int i = 0; i <topics.get(Position).length(); i++){
                 title.setText(topics.get(Position));
-                point_of.setText(point.get(Position));
-                Log.d("Topic1A", "index: "+Position+"Topic1A: " + topics.get(Position)+point.get(Position));
+//                point_of.setText(point.get(Position));
+//                Log.d("Topic1A", "index: "+Position+"Topic1A: " + topics.get(Position)+point.get(Position));
                 Log.d("Topic1", "index: "+Position+"Topic1: " + topics.get(Position).length());
             }
 

@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.RadioButton;
 import android.widget.TextView;
 
 import com.khamban.assessment.MySQLConnect;
@@ -16,8 +17,8 @@ import java.util.List;
 
 public class Adapt_Report extends RecyclerView.Adapter<Adapt_Report.viewHolder_report> {
     private static String[] items;
-    private List<String> topics;
-    private int topic;
+    private List<String> topics,point;
+    private int opton;
     private Context main;
 
 //    public Adapt_question(String[] items) {
@@ -28,9 +29,9 @@ public class Adapt_Report extends RecyclerView.Adapter<Adapt_Report.viewHolder_r
 //        this.topics = topics;
 //    }
 
-    public Adapt_Report(List<String> topics) {
+    public Adapt_Report(List<String> topics,List<String> point) {
         this.topics = topics;
-        this.topic = topic;
+        this.point = point;
     }
 
     @Override
@@ -46,7 +47,7 @@ public class Adapt_Report extends RecyclerView.Adapter<Adapt_Report.viewHolder_r
 
     @Override
     public void onBindViewHolder(Adapt_Report.viewHolder_report holder, int position) {
-        ((Adapt_Report.viewHolder_report) holder).bindView(position);
+        ((viewHolder_report) holder).bindView(position);
 //            for (int i = 0; i < topics.get(position).getSubName().size(); i++) {
 //                holder.title.setText(topics.get(i).getSubName().get(i));
 //                Log.d("Topic1A", "index: " + position + "Topic1A: " + topics.get(position).getSubName().get(i));
@@ -70,9 +71,10 @@ public class Adapt_Report extends RecyclerView.Adapter<Adapt_Report.viewHolder_r
 
 
     public class viewHolder_report extends RecyclerView.ViewHolder {
-        TextView title,title2;
+        TextView title,point_of;
         Button btn1;
         String Question = "";
+        RadioButton radi1,radi2,radi3,radi4,radi5;
         //            private List<String> items;
         private MySQLConnect mySQLConnect;
 
@@ -80,7 +82,9 @@ public class Adapt_Report extends RecyclerView.Adapter<Adapt_Report.viewHolder_r
         public viewHolder_report(View itemView) {
             super(itemView);
             title = (TextView) itemView.findViewById(R.id.list_ques);
-            title2 = (TextView) itemView.findViewById(R.id.list_point);
+            point_of = (TextView) itemView.findViewById(R.id.list_point);
+
+
 //            btn1 = (Button)itemView.findViewById(R.id.order);
 
         }
@@ -88,27 +92,10 @@ public class Adapt_Report extends RecyclerView.Adapter<Adapt_Report.viewHolder_r
         public void bindView(int Position) {
             for (int i = 0; i <topics.get(Position).length(); i++){
                 title.setText(topics.get(Position));
-                Log.d("Topic1A", "index: "+Position+"Topic1A: " + topics.get(Position));
+                point_of.setText(point.get(Position));
+//                Log.d("Topic1A", "index: "+Position+"Topic1A: " + topics.get(Position)+point.get(Position));
                 Log.d("Topic1", "index: "+Position+"Topic1: " + topics.get(Position).length());
-//
-//
             }
-//            Position++;
-//            String[] value = new String[topics.get(Position).getSubName().size()];
-//            for(String str : topics.get(Position).getSubName()){
-//                value += str + "\n";
-//            }
-//            title.setText(value);
-
-//            for (int i = 0; i <topics.get(Position).getSubName().size(); i++){
-//                title.setText(topics.get(Position).getSubName().toString());
-//                Log.d("Topic", "Topic: " + Position);
-//            }
-//            Log.d("Topic2", "Topic2: " + Position);
-//            title.setText(value[Position]);
-//            title.setText(topics.get(Position).getSubName().get(0));
-
-//            title.setText(items[Position]);
         }
 
     }

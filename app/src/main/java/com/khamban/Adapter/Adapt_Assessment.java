@@ -12,9 +12,11 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.khamban.assessment.Evaluation;
 import com.khamban.assessment.ListOf_evaluation;
 import com.khamban.assessment.MySQLConnect;
 import com.khamban.assessment.R;
+import com.khamban.assessment.Report;
 
 public class Adapt_Assessment extends RecyclerView.Adapter<Adapt_Assessment.viewHolder> {
     private static String[] items;
@@ -75,8 +77,13 @@ public class Adapt_Assessment extends RecyclerView.Adapter<Adapt_Assessment.view
                     public boolean onMenuItemClick(MenuItem item) {
                         switch (item.getItemId()) {
                             case R.id.menu_detail:
+                                int index = 2;
+                                if(items[getAdapterPosition()].toString().equals("แบบประเมินการจัดการเรียนการสอนภาคทฤษฎี และสิ่งสนับสนุนการเรียนรู้"))
+                                {
+                                    index = 1;
+                                }
                                 Toast.makeText(view.getContext(), "Item" + getAdapterPosition(), Toast.LENGTH_SHORT).show();
-                                ListOf_evaluation List = new ListOf_evaluation();
+                                Report List = new Report(index);
                                 FragmentManager manager = ((FragmentActivity)view.getContext()).getSupportFragmentManager();
                                 manager.beginTransaction().replace(R.id.main, List).commit();
                                 return true;

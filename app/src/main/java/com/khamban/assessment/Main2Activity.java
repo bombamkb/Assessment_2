@@ -158,26 +158,31 @@ public class Main2Activity extends AppCompatActivity
         String url = "http://10.80.39.17/TSP58/nursing/application/controllers/amis/Mobile/Android/sqlfile.php?status=0";
 //        Toast.makeText(Main2Activity.this, "เข้าฟังก์ชัน", Toast.LENGTH_SHORT).show();
 
-
         StringRequest stringRequest = new StringRequest(url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 try {
                     JSONObject jsonObject = new JSONObject(response);
                     JSONArray result = jsonObject.getJSONArray("Assessment");
-                    String[] arr = new String[result.length()];
+                    final String[] arr = new String[result.length()];
                     for (int i = 0; i < result.length(); i++) {
                         JSONObject collectData = result.getJSONObject(i);
                         String evaName = collectData.getString("name");
 //                        items.add(evaName);
                         arr[i] = evaName;
+
                     }
                     final ListView dataViews = (ListView) findViewById(R.id.Lis_2);
                     dataViews.setAdapter(new ArrayAdapter<String>(Main2Activity.this, android.R.layout.simple_list_item_1,arr));//ทดแทนกันโดยเรียกใช้ adt แทน
                     dataViews.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-                                            Toast.makeText(Main2Activity.this, "Item id: " +id +"Position :"+position, Toast.LENGTH_SHORT).show();
-                                            Evaluation List = new Evaluation(1);
+                            int index = 2;
+                            if(arr[position].toString().equals("แบบประเมินการจัดการเรียนการสอนภาคทฤษฎี และสิ่งสนับสนุนการเรียนรู้"))
+                            {
+                                index = 1;
+                            }
+                                            Toast.makeText(Main2Activity.this, "Item id: " +id +"Position :"+arr[position].toString()+"index : "+index, Toast.LENGTH_SHORT).show();
+                                            Evaluation List = new Evaluation(index);
                                             FragmentManager manager = getSupportFragmentManager();
                                             manager.beginTransaction().replace(R.id.main, List).commit();
 

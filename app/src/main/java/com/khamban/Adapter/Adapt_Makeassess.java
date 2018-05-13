@@ -26,6 +26,7 @@ public class Adapt_Makeassess extends RecyclerView.Adapter<Adapt_Makeassess.view
     private static String[] Question, sub;
     private ArrayList<Topic> topics;
     private Context main,main2;
+    private int option,count;
 
 //    public Adapt_Makeassess(String[] Question) {
 //        this.Question = Question;
@@ -33,6 +34,7 @@ public class Adapt_Makeassess extends RecyclerView.Adapter<Adapt_Makeassess.view
 //    }
 
     public Adapt_Makeassess(ArrayList<Topic> topics) {
+
         this.topics = topics;
     }
 
@@ -75,9 +77,15 @@ public class Adapt_Makeassess extends RecyclerView.Adapter<Adapt_Makeassess.view
         public void bindView(int Position) {
 
             title.setText(topics.get(Position).getQuestion());//Question[Position]
-                Adapt_question adapter = new Adapt_question(topics.get(Position).getSubName(), topics.get(Position).getPoint(),1);
+            if(option==0) {
+                Adapt_question adapter = new Adapt_question(topics.get(Position).getSubName());
                 title4.setAdapter(adapter);
-            Log.d("onResponse1", "bindView1: " + topics.get(Position).getSubName());
+            }
+//            if(option==1) {
+//                Adapt_Report adapter = new Adapt_Report(topics.get(Position).getPoint(), option);
+//                title4.setAdapter(adapter);
+//            }
+            Log.d("Point", "bindView1: " + topics.get(Position).getPoint());
         }
 
 
