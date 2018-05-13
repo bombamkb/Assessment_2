@@ -1,12 +1,14 @@
 package com.khamban.Adapter;
 
 import android.content.Context;
+import android.provider.MediaStore;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
@@ -50,20 +52,7 @@ public class Adapt_question extends RecyclerView.Adapter<Adapt_question.viewHold
 
     @Override
     public void onBindViewHolder(Adapt_question.viewHolder_question holder, int position) {
-        ((Adapt_question.viewHolder_question) holder).bindView(position);
-//            for (int i = 0; i < topics.get(position).getSubName().size(); i++) {
-//                holder.title.setText(topics.get(i).getSubName().get(i));
-//                Log.d("Topic1A", "index: " + position + "Topic1A: " + topics.get(position).getSubName().get(i));
-//                Log.d("Topic1", "index: " + position + "Topic1: " + topics.get(position).getSubName().size());
-//
-//
-//            }
-//        position++;
-
-
-
-//        holder.title.setText(topics.get(i).getSubName().get(i));
-//        holder.title.setText(topics.get(position).getSubName().get(i));
+        ((viewHolder_question) holder).bindView(position);
     }
 
 
@@ -77,7 +66,7 @@ public class Adapt_question extends RecyclerView.Adapter<Adapt_question.viewHold
         TextView title,point_of;
         Button btn1;
         String Question = "";
-        RadioGroup radi1,radi2,radi3,radi4,radi5;
+        RadioButton radi1,radi2,radi3,radi4,radi5;
         //            private List<String> items;
         private MySQLConnect mySQLConnect;
 
@@ -86,13 +75,21 @@ public class Adapt_question extends RecyclerView.Adapter<Adapt_question.viewHold
             super(itemView);
             title = (TextView) itemView.findViewById(R.id.Question_a);
             point_of = (TextView) itemView.findViewById(R.id.txt_point);
-            radi1 = (RadioGroup) itemView.findViewById(R.id.point_1);
-            radi2 = (RadioGroup) itemView.findViewById(R.id.point_2);
-            radi3 = (RadioGroup) itemView.findViewById(R.id.point_3);
-            radi4 = (RadioGroup) itemView.findViewById(R.id.point_4);
-            radi5 = (RadioGroup) itemView.findViewById(R.id.point_5);
+            radi1 = (RadioButton) itemView.findViewById(R.id.point_1);
+            radi2 = (RadioButton) itemView.findViewById(R.id.point_2);
+            radi3 = (RadioButton) itemView.findViewById(R.id.point_3);
+            radi4 = (RadioButton) itemView.findViewById(R.id.point_4);
+            radi5 = (RadioButton) itemView.findViewById(R.id.point_5);
 
             if (opton==1){
+                point_of.setVisibility(View.VISIBLE);
+                radi1.setVisibility(View.INVISIBLE);
+                radi2.setVisibility(View.INVISIBLE);
+                radi3.setVisibility(View.INVISIBLE);
+                radi4.setVisibility(View.INVISIBLE);
+                radi5.setVisibility(View.INVISIBLE);
+            }
+            if(opton==0){
                 point_of.setVisibility(View.INVISIBLE);
                 radi1.setVisibility(View.VISIBLE);
                 radi2.setVisibility(View.VISIBLE);
@@ -100,7 +97,6 @@ public class Adapt_question extends RecyclerView.Adapter<Adapt_question.viewHold
                 radi4.setVisibility(View.VISIBLE);
                 radi5.setVisibility(View.VISIBLE);
             }
-//            btn1 = (Button)itemView.findViewById(R.id.order);
 
         }
 
@@ -110,25 +106,8 @@ public class Adapt_question extends RecyclerView.Adapter<Adapt_question.viewHold
                 point_of.setText(point.get(Position));
                 Log.d("Topic1A", "index: "+Position+"Topic1A: " + topics.get(Position)+point.get(Position));
                 Log.d("Topic1", "index: "+Position+"Topic1: " + topics.get(Position).length());
-//
-//
             }
-//            Position++;
-//            String[] value = new String[topics.get(Position).getSubName().size()];
-//            for(String str : topics.get(Position).getSubName()){
-//                value += str + "\n";
-//            }
-//            title.setText(value);
 
-//            for (int i = 0; i <topics.get(Position).getSubName().size(); i++){
-//                title.setText(topics.get(Position).getSubName().toString());
-//                Log.d("Topic", "Topic: " + Position);
-//            }
-//            Log.d("Topic2", "Topic2: " + Position);
-//            title.setText(value[Position]);
-//            title.setText(topics.get(Position).getSubName().get(0));
-
-//            title.setText(items[Position]);
         }
 
     }

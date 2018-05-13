@@ -79,7 +79,7 @@ public class List_of_report extends Fragment {
                             arr.add(res.get(j).toString());
                             Log.d("onResponse", "onResponse: " + res.get(j));
                         }
-                        topics.add(new Topic(Question,arr));
+//                        topics.add(new Topic(Question,arr));
                     }
                     Log.d("onResponse", "onResponse: " + list_questtion1_term1.length);
 //                    Adapt_Report adapter = new Adapt_Report(topics);//list_questtion1_term1

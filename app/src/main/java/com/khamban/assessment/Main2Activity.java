@@ -177,7 +177,7 @@ public class Main2Activity extends AppCompatActivity
                     dataViews.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
                                             Toast.makeText(Main2Activity.this, "Item id: " +id +"Position :"+position, Toast.LENGTH_SHORT).show();
-                                            Evaluation List = new Evaluation(position);
+                                            Evaluation List = new Evaluation(1);
                                             FragmentManager manager = getSupportFragmentManager();
                                             manager.beginTransaction().replace(R.id.main, List).commit();
 
