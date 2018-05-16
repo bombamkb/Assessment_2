@@ -11,7 +11,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
+import android.widget.RadioButton;
 import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
@@ -37,12 +39,13 @@ import java.util.List;
  * A simple {@link Fragment} subclass.
  */
 @SuppressLint("ValidFragment")
-public class Evaluation extends Fragment {
+public class Evaluation extends Fragment implements View.OnClickListener{
     private List<String> items, list, list2, items2;
     private String URL = "http://10.80.39.17/TSP58/nursing/application/controllers/amis/Mobile/Android/sqlfile.php";
     private RecyclerView recyclerview;
     private ListView dataViews;
     int index,option;
+    Button submit;
 
 
     public Evaluation(int index) {
@@ -60,6 +63,12 @@ public class Evaluation extends Fragment {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recyclerview.setLayoutManager(layoutManager);
         items = getquesstion1(index);
+        submit = (Button)  view.findViewById(R.id.sub);
+
+        View.OnClickListener onClickListener;
+        submit.setOnClickListener(this);
+
+
 
         return view;
     }
@@ -128,4 +137,8 @@ public class Evaluation extends Fragment {
         return list;
     }
 
+    @Override
+    public void onClick(View view) {
+
+    }
 }
