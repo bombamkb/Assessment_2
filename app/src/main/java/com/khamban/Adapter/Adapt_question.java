@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.khamban.assessment.MySQLConnect;
 import com.khamban.assessment.R;
@@ -65,6 +66,7 @@ public class Adapt_question extends RecyclerView.Adapter<Adapt_question.viewHold
         Button btn1;
         String Question = "";
         RadioButton radi1,radi2,radi3,radi4,radi5;
+        RadioGroup group;
         //            private List<String> items;
         private MySQLConnect mySQLConnect;
 
@@ -77,7 +79,7 @@ public class Adapt_question extends RecyclerView.Adapter<Adapt_question.viewHold
             radi3 = (RadioButton) itemView.findViewById(R.id.point_3);
             radi4 = (RadioButton) itemView.findViewById(R.id.point_4);
             radi5 = (RadioButton) itemView.findViewById(R.id.point_5);
-
+            group = (RadioGroup) itemView.findViewById(R.id.Radio_point);
 
         }
 
@@ -86,10 +88,38 @@ public class Adapt_question extends RecyclerView.Adapter<Adapt_question.viewHold
                 title.setText(topics.get(Position));
 //                point_of.setText(point.get(Position));
 //                Log.d("Topic1A", "index: "+Position+"Topic1A: " + topics.get(Position)+point.get(Position));
+
+
+
                 Log.d("Topic1", "index: "+Position+"Topic1: " + topics.get(Position).length());
             }
 
         }
 
+        public void onClick(final View view) {
+            group.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
+            {
+                public void onCheckedChanged(RadioGroup group, int checkedId) {
+                    switch(checkedId){
+                        case R.id.point_1:
+                            Toast.makeText(view.getContext(), "Click: Point1", Toast.LENGTH_SHORT).show();
+                            // do operations specific to this selection
+                            break;
+                        case R.id.point_2:
+                            // do operations specific to this selection
+                            break;
+                        case R.id.point_3:
+                            // do operations specific to this selection
+                            break;
+                        case R.id.point_4:
+                            // do operations specific to this selection
+                            break;
+                        case R.id.point_5:
+                            // do operations specific to this selection
+                            break;
+                    }
+                }
+            });
+        }
     }
 }

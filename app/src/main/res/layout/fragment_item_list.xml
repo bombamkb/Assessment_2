@@ -22,7 +22,7 @@
            android:layout_height="wrap_content"
            android:text="รายการที่ 1"
            android:fontFamily="@font/thsarabun"
-           android:textSize="30dp"
+           android:textSize="20dp"
 
            />
    </LinearLayout>
