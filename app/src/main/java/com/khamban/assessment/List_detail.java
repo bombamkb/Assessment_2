@@ -79,7 +79,7 @@ public class List_detail extends Fragment {
 //                showAssessment(response);
                 try {
                     JSONObject jsonObject = new JSONObject(response);
-                    JSONArray result =  jsonObject.getJSONArray("Assessment_of");
+                    JSONArray result =  jsonObject.getJSONArray("Assessment");
                     String evaName = "";
                     String[] data = new String[result.length()];
                     for (int i = 0 ; i < result.length();i++){

@@ -181,10 +181,13 @@ public class Main2Activity extends AppCompatActivity
                             {
                                 index = 1;
                             }
+                            Intent home = new Intent(getApplicationContext(),List_of_Subject_andTeacher.class);
+                            home.putExtra("index", index);
                                             Toast.makeText(Main2Activity.this, "Item id: " +id +"Position :"+arr[position].toString()+"index : "+index, Toast.LENGTH_SHORT).show();
-                                            Evaluation List = new Evaluation(index);
+                                            Subject_andTeac List = new Subject_andTeac(index);
                                             FragmentManager manager = getSupportFragmentManager();
                                             manager.beginTransaction().replace(R.id.main, List).commit();
+
 
                                     }
 

@@ -23,6 +23,7 @@
            android:text="รายการที่ 1"
            android:fontFamily="@font/thsarabun"
            android:textSize="20dp"
+           android:layout_margin="5dp"
 
            />
    </LinearLayout>

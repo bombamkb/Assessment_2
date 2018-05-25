@@ -17,6 +17,7 @@ import com.khamban.assessment.ListOf_evaluation;
 import com.khamban.assessment.MySQLConnect;
 import com.khamban.assessment.R;
 import com.khamban.assessment.Report;
+import com.khamban.assessment.Report_before;
 
 public class Adapt_Assessment extends RecyclerView.Adapter<Adapt_Assessment.viewHolder> {
     private static String[] items;
@@ -70,33 +71,9 @@ public class Adapt_Assessment extends RecyclerView.Adapter<Adapt_Assessment.view
 
             @Override
             public void onClick(final View view) {
-                PopupMenu popupMenu = new PopupMenu(view.getContext(), title);
-                popupMenu.getMenuInflater().inflate(R.menu.popup, popupMenu.getMenu());
-                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                    @Override
-                    public boolean onMenuItemClick(MenuItem item) {
-                        switch (item.getItemId()) {
-                            case R.id.menu_detail:
-                                int index = 2;
-                                if(items[getAdapterPosition()].toString().equals("แบบประเมินการจัดการเรียนการสอนภาคทฤษฎี และสิ่งสนับสนุนการเรียนรู้"))
-                                {
-                                    index = 1;
-                                }
-                                Toast.makeText(view.getContext(), "Item" + getAdapterPosition(), Toast.LENGTH_SHORT).show();
-                                Report List = new Report(index);
-                                FragmentManager manager = ((FragmentActivity)view.getContext()).getSupportFragmentManager();
-                                manager.beginTransaction().replace(R.id.main, List).commit();
-                                return true;
-                            case R.id.menu_detail_1:
-                                Toast.makeText(view.getContext(), "Item", Toast.LENGTH_SHORT).show();
-                                return true;
-                            default:
-                                return false;
-                        }
-                    }
-                });
-
-                popupMenu.show();
+                Report_before List = new Report_before(getAdapterPosition()+1);
+                FragmentManager manager = ((FragmentActivity)view.getContext()).getSupportFragmentManager();
+                manager.beginTransaction().replace(R.id.main, List).commit();
             }
         }
     }

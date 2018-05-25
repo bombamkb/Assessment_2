@@ -31,18 +31,18 @@ public class list extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_list,container,false);
-        Spinner Year = (Spinner) view.findViewById(R.id.year);
-        ArrayAdapter adapter = new ArrayAdapter(getActivity(),android.R.layout.simple_list_item_1,year);
-        Year.setAdapter(adapter);
-
-        Spinner Term = (Spinner) view.findViewById(R.id.term);
-        ArrayAdapter adapter_2 = new ArrayAdapter(getActivity(),android.R.layout.simple_list_item_1,term);
-        Term.setAdapter(adapter_2);
-        List_detail fragment = new List_detail();
-        FragmentManager fragmentManager = getFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.add(R.id.list_detail, fragment);
-        fragmentTransaction.commit();
+//        Spinner Year = (Spinner) view.findViewById(R.id.year);
+//        ArrayAdapter adapter = new ArrayAdapter(getActivity(),android.R.layout.simple_list_item_1,year);
+//        Year.setAdapter(adapter);
+//
+//        Spinner Term = (Spinner) view.findViewById(R.id.term);
+//        ArrayAdapter adapter_2 = new ArrayAdapter(getActivity(),android.R.layout.simple_list_item_1,term);
+//        Term.setAdapter(adapter_2);
+//        List_detail fragment = new List_detail();
+//        FragmentManager fragmentManager = getFragmentManager();
+//        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+//        fragmentTransaction.add(R.id.list_detail, fragment);
+//        fragmentTransaction.commit();
         return view;
 
     }
