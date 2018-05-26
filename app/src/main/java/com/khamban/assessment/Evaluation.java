@@ -2,6 +2,7 @@ package com.khamban.assessment;
 
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -79,7 +80,7 @@ public class Evaluation extends Fragment implements View.OnClickListener{
 //        Toast.makeText(main, "เข้าฟังก์ชัน", Toast.LENGTH_SHORT).show();
 
 //        final int finalIndex;
-        Toast.makeText(getActivity(), ""+index, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(getActivity(), ""+index, Toast.LENGTH_SHORT).show();
         StringRequest stringRequest = new StringRequest(url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -139,6 +140,7 @@ public class Evaluation extends Fragment implements View.OnClickListener{
 
     @Override
     public void onClick(View view) {
-
+        Intent home = new Intent(getActivity().getApplicationContext(),Main2Activity.class);
+        startActivity(home);
     }
 }

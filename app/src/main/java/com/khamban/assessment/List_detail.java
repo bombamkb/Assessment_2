@@ -71,7 +71,7 @@ public class List_detail extends Fragment {
     }
     public List<String> getAssessment(){
         String url = URL;
-        Toast.makeText(getActivity(), "เข้าฟังก์ชัน", Toast.LENGTH_SHORT).show();
+//        Toast.makeText(getActivity(), "เข้าฟังก์ชัน", Toast.LENGTH_SHORT).show();
 
         StringRequest stringRequest = new StringRequest(url, new Response.Listener<String>() {
             @Override
@@ -96,7 +96,7 @@ public class List_detail extends Fragment {
                     e.printStackTrace();
                 }
 
-                Toast.makeText(getActivity(), "เข้าลูป", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getActivity(), "เข้าลูป", Toast.LENGTH_SHORT).show();
 //                Toast.makeText(getActivity(), list.get(0), Toast.LENGTH_SHORT).show();
 
             }

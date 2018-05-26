@@ -71,7 +71,7 @@ public class Adapt_question extends RecyclerView.Adapter<Adapt_question.viewHold
         private MySQLConnect mySQLConnect;
 
 
-        public viewHolder_question(View itemView) {
+        public viewHolder_question(final View itemView) {
             super(itemView);
             title = (TextView) itemView.findViewById(R.id.Question_a);
             radi1 = (RadioButton) itemView.findViewById(R.id.point_1);
@@ -80,6 +80,48 @@ public class Adapt_question extends RecyclerView.Adapter<Adapt_question.viewHold
             radi4 = (RadioButton) itemView.findViewById(R.id.point_4);
             radi5 = (RadioButton) itemView.findViewById(R.id.point_5);
             group = (RadioGroup) itemView.findViewById(R.id.Radio_point);
+
+
+            group.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                    switch (i) {
+                        case (R.id.point_1):
+                            final int index = (getAdapterPosition())+1;
+                            Toast.makeText(itemView.getContext(), "ข้อที่: "+ index +"ได้ 5 คะแนน", Toast.LENGTH_SHORT).show();
+
+                            break;
+                        case (R.id.point_2):
+                            final int index2 = (getAdapterPosition())+1;
+                            Toast.makeText(itemView.getContext(), "ข้อที่: "+ index2 +"ได้ 4 คะแนน", Toast.LENGTH_SHORT).show();
+//                            visualScore[position] = 0;
+//                            audioScore[position] = 1;
+//                            kinestScore[position] = 0;
+                            break;
+                        case (R.id.point_3):
+                            final int index3 = (getAdapterPosition())+1;
+                            Toast.makeText(itemView.getContext(), "ข้อที่: "+ index3 +"ได้ 3 คะแนน", Toast.LENGTH_SHORT).show();
+//                            visualScore[position] = 0;
+//                            audioScore[position] = 0;
+//                            kinestScore[position] = 1;
+                            break;
+                        case (R.id.point_4):
+                            final int index4 = (getAdapterPosition())+1;
+                            Toast.makeText(itemView.getContext(), "ข้อที่: "+ index4 +"ได้ 2 คะแนน", Toast.LENGTH_SHORT).show();
+//                            visualScore[position] = 0;
+//                            audioScore[position] = 0;
+//                            kinestScore[position] = 1;
+                            break;
+                        case (R.id.point_5):
+                            final int index5 = (getAdapterPosition())+1;
+                            Toast.makeText(itemView.getContext(), "ข้อที่: "+ index5 +"ได้ 1 คะแนน", Toast.LENGTH_SHORT).show();
+//                            visualScore[position] = 0;
+//                            audioScore[position] = 0;
+//                            kinestScore[position] = 1;
+                            break;
+                    }
+                }
+            });
 
         }
 

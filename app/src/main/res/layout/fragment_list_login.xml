@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".list_login">
+
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:orientation="vertical">
+
+
+        <ImageView
+            android:id="@+id/nav_head"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@color/colorhead"
+            android:src="@drawable/head"
+            />
+       <TextView
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:text="ยินดีต้อนรับ"
+           android:fontFamily="@font/thsarabun"
+           android:textSize="30dp"
+           android:gravity="center"/>
+       <ImageView
+           android:id="@+id/Img_login"
+           android:layout_width="300dp"
+           android:layout_height="200dp"
+           android:src="@drawable/img_219519"
+           android:layout_gravity="center_horizontal"
+           android:layout_marginTop="20dp"
+           />
+       <TextView
+           android:id="@+id/txt_teacher"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text="ชื่ออาาจารย์ผู้ประเมิน"
+           android:layout_marginTop="10dp"
+           android:fontFamily="@font/thsarabun"
+           android:textSize="20dp"
+           android:layout_gravity="center_horizontal"
+           />
+       <Button
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text="ทำแบบประเมิน"
+           android:fontFamily="@font/thsarabun"
+           android:textSize="25dp"
+           android:layout_marginTop="20dp"
+           android:layout_gravity="center_horizontal"
+           android:onClick="login"
+           />
+
+   </LinearLayout>
+
+</FrameLayout>
